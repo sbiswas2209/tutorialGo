@@ -24,15 +24,16 @@ func initDatabase() {
 
 }
 
-func helloWorld(c *fiber.Ctx) {
-	c.Send("Hello World")
+func root(c *fiber.Ctx) {
+	c.Send("Server is currently up and running. Let's Go!!!")
 }
 
 func setupRoutes(a *fiber.App) {
+	a.Get("/", root)
 	a.Get("/api/v1/books", book.GetAllBooks)
-	a.Get("/api/v1/book/:id", book.GetSingleBook)
+	a.Get("/api/v1/single/:id", book.GetSingleBook)
 	a.Post("/api/v1/book", book.AddBook)
-	a.Delete("/api/v1/book/delete/:id", book.DeleteBook)
+	a.Delete("/api/v1/delete/:id", book.DeleteBook)
 }
 
 func main() {
